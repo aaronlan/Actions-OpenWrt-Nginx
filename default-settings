@@ -9,7 +9,7 @@ sed -i "s/# //g" /etc/opkg/distfeeds.conf
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
-sed -i "s/127.0.0.1:5335/127.0.0.1:5555/g" /etc/AdGuardHome.yaml
+# sed -i "s/127.0.0.1:5335/127.0.0.1:5555/g" /etc/AdGuardHome.yaml
 
 rm -rf /tmp/luci-*
 
@@ -33,7 +33,7 @@ if [ ! -f /etc/config/placeholder ]; then
   uci set fstab.@global[0].anon_mount=1
   uci commit fstab
   sed -i 's/root:.*/root:$1$tTPCBw1t$ldzfp37h5lSpO9VXk4uUE\/:18336:0:99999:7:::/g' /etc/shadow
-  uci set network.lan.ipaddr="10.0.0.1"
+  uci set network.lan.ipaddr="192.168.168.1"
   uci set network.wan.proto=pppoe
   uci commit network
   
@@ -69,9 +69,9 @@ if [ ! -f /etc/config/placeholder ]; then
   uci add_list shadowsocksr.@access_control[0].wan_fw_ips='149.112.112.112'
   uci commit shadowsocksr
 
-  uci set AdGuardHome.AdGuardHome.redirect='dnsmasq-upstream'
-  uci set AdGuardHome.AdGuardHome.enabled='1'
-  uci commit AdGuardHome
+  # uci set AdGuardHome.AdGuardHome.redirect='dnsmasq-upstream'
+  # uci set AdGuardHome.AdGuardHome.enabled='1'
+  # uci commit AdGuardHome
   
   uci set smartdns.@smartdns[0].enabled='1'
   uci set smartdns.@smartdns[0].port='5555'
